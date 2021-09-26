@@ -13,6 +13,8 @@ import { DevGetPost, DevCreatePost } from './controller/Dev'
 dotenv.config()
 const app = express()
 
+let PORT = process.env.PORT || 5000;
+
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@main.p5rx0.mongodb.net/MiraDB?retryWrites=true&w=majority`
 )
@@ -47,6 +49,6 @@ app.get('/post/user', GetUserPost)
 app.get('/dev/post', DevGetPost)
 app.post('/dev/post/create', DevCreatePost)
 
-app.listen('3001', () => {
-  console.log('Server is running on port 3001')
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 })
