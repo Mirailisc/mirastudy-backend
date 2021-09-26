@@ -1,1 +1,1 @@
-web: node src/index.js
+web: node --experimental-modules --es-module-specifier-resolution=node src/index.js
