@@ -67,7 +67,6 @@ export const UpdateImage = (req, res) => {
     const imgsrc =
       'https://mirastudy-backend.herokuapp.com/images/' + req.file.filename
     const user = req.body.user
-
     User.updateOne(
       { username: user },
       {

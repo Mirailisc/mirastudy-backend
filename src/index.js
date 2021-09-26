@@ -13,7 +13,7 @@ import { DevGetPost, DevCreatePost } from './controller/Dev'
 dotenv.config()
 const app = express()
 
-let PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5000
 
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@main.p5rx0.mongodb.net/MiraDB?retryWrites=true&w=majority`
@@ -26,7 +26,7 @@ app.use(
     credentials: true
   })
 )
-app.use('/images', express.static('public'))
+app.use('/images', express.static(process.cwd() + '/public/static/uploads/'))
 app.use(express.json())
 
 // User
