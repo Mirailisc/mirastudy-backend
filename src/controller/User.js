@@ -64,7 +64,8 @@ export const UpdateImage = (req, res) => {
   if (!req.file) {
     res.status(404).json({ error: 'No file upload' })
   } else {
-    const imgsrc = 'http://localhost:3001/images/' + req.file.filename
+    const imgsrc =
+      'https://mirastudy-backend.herokuapp.com/images/' + req.file.filename
     const user = req.body.user
 
     User.updateOne(
