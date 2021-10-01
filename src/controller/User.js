@@ -1,5 +1,6 @@
 import { User } from '../models/models'
 import bcrypt from 'bcrypt'
+import sharp from 'sharp'
 
 export const GetUser = async (req, res) => {
   const username = req.query.user
@@ -60,13 +61,17 @@ export const UpdateUser = (req, res) => {
   )
 }
 
-export const UpdateImage = (req, res) => {
+export const UpdateImage = async (req, res) => {
   if (!req.file) {
     res.status(404).json({ error: 'No file upload' })
   } else {
     const imgsrc =
       'https://mirastudy-backend.herokuapp.com/images/' + req.file.filename
     const user = req.body.user
+    await sharp(req.file.path)
+      .resize(200, 200)
+      .jpeg({ quality: 30 })
+      .toFile(process.cwd(), '/public/static/uploads/' + req.file.filename)
     User.updateOne(
       { username: user },
       {
